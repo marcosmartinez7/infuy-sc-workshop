@@ -23,7 +23,7 @@ contract RskToken {
 	}
 
 	function getBalanceInEth(address addr) public view returns(uint){
-		return TokenToEther.convert(getBalance(addr),2);
+		return TokenToEther.convert(getBalance(addr),1);
 	}
 
 	function getBalance(address addr) public view returns(uint) {
