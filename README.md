@@ -15,7 +15,7 @@ Smart Contract example for the bitcoin day workshop
 
 ## Instalacion de Truffle
 
-- npm install truffle -g
+- npm install -g truffle@4.1.14
 
 ## Creacion de proyecto en Truffle
 
@@ -25,9 +25,8 @@ Smart Contract example for the bitcoin day workshop
 - cd RskToken
  
 
-2. Ejecutar truffle init. Este comando creara la estructura principal del proyecto sin ningun smart contract.  
+2. Ejecutar truffle init. Este comando creará la estructura principal del proyecto.  
 
-TODO EXPLICAR CADA COSA
 ```
 .
 ├── contracts
@@ -69,7 +68,7 @@ Accounts:
 (1) 0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671
 (2) 0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17
 ```
-Check balance of addreses
+Chequeo de balances
 
 (0)
 ```
@@ -155,7 +154,7 @@ truffle(develop)> balance.toString(10)
 '10'
 ```
 
-Enviemos  5 tokens desde address 1 hacia address 2
+Enviemos 5 tokens desde address 1 hacia address 2
 ```
  sent = rskToken.transferTokens("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17", 5, {from: "0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671"})
 
@@ -200,8 +199,6 @@ Enviemos  5 tokens desde address 1 hacia address 2
 ```
 
 Ahora ambas cuentas deberian contar con  un balance de 5 RskTokens 
-
-
 
 (1)
 ```
