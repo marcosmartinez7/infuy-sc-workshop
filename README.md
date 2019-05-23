@@ -15,20 +15,19 @@ Smart Contract example for the bitcoin day workshop
 
 ## Instalacion de Truffle
 
-- npm install truffle -g
+- npm install -g truffle@4.1.14
 
 ## Creacion de proyecto en Truffle
 
 1. Crear un nuevo directorio para el proyecto Truffle: 
 
-- mkdir RskToken
-- cd RskToken
+- mkdir InfuyToken
+- cd InfuyToken
  
 
-2. Ejecutar truffle init. Este comando creara la estructura principal del proyecto sin ningun smart contract.  
+2. Ejecutar truffle init. Este comando creará la estructura principal del proyecto.  
 
-TODO EXPLICAR CADA COSA
-
+```
 .
 ├── contracts
 │   └── Migrations.sol
@@ -36,7 +35,7 @@ TODO EXPLICAR CADA COSA
 │   └── 1_initial_migration.js
 ├── test
 └── truffle-config.js
-
+```
 3. 
 
 - Crear solidity files en la carpeta contracts. 
@@ -57,44 +56,44 @@ TODO EXPLICAR CADA COSA
 - realizar una transferencia desde la nueva cuenta fondeada
 
 1. Obtener una instancia de Truffle Contract (interaccion mediante truffle framework y web3 con los contratos)
-
-let rskToken = null;
-RskToken.deployed().then((instance)=>{rskToken = instance});
-
+```
+let infuyToken = null;
+InfuyToken.deployed().then((instance)=>{infuyToken = instance});
+```
 2. Enviar desde el owner a otra cuenta. Owner es address 0
-
+```
 Accounts: 
 
 (0) 0x595973f644a5c31f748d35f5492b118f5e2b7ad3
 (1) 0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671
 (2) 0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17
-
-Check balance of addreses
+```
+Chequeo de balances
 
 (0)
-
-truffle(develop)> let balance = await rskToken.getBalance("0x595973f644a5c31f748d35f5492b118f5e2b7ad3")
-undefined
+```
+truffle(develop)> let balance = await infuyToken.getBalance("0x595973f644a5c31f748d35f5492b118f5e2b7ad3")
 truffle(develop)> balance
 <BN: 64>
 truffle(develop)> balance.toString(10)
 '100'
+```
 
 
 (1)
-
-truffle(develop)> rskToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
+```
+truffle(develop)> infuyToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
 <BN: 0>
-
+```
 (2)
-
-truffle(develop)> rskToken.getBalance("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17")
+```
+truffle(develop)> infuyToken.getBalance("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17")
 <BN: 0>
+```
 
-
-Send 10 tokens from address 0
-
-let sent = rskToken.transferTokens("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671", 5, {from: "0x595973f644a5c31f748d35f5492b118f5e2b7ad3"})
+Envio de 10 tokens desde address 0 a address 1
+```
+let sent = infuyToken.transferTokens("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671", 5, {from: "0x595973f644a5c31f748d35f5492b118f5e2b7ad3"})
 
 sent
 { tx:
@@ -135,26 +134,29 @@ sent
        event: 'Transfer',
        args: [Result] } ] }
 
+```
 
-Now check the balances again
+Chequeo de balances:
 
 
-Address 0 now has 90
-
-truffle(develop)>  balance = await rskToken.getBalance("0x595973f644a5c31f748d35f5492b118f5e2b7ad3")
+Address 0 ahora tiene 90 tokens
+```
+truffle(develop)>  balance = await infuyToken.getBalance("0x595973f644a5c31f748d35f5492b118f5e2b7ad3")
 truffle(develop)> balance.toString(10)
 '90'
+```
 
-Address 1 now has 10 
+Address 1 ahora tiene 10 Tokens 
+```
 
-truffle(develop)> balance = rskToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
+truffle(develop)> balance = infuyToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
 truffle(develop)> balance.toString(10)
 '10'
+```
 
-
-Now lets send 5 tokens from address 1 to address 2
-
- sent = rskToken.transferTokens("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17", 5, {from: "0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671"})
+Enviemos 5 tokens desde address 1 hacia address 2
+```
+ sent = infuyToken.transferTokens("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17", 5, {from: "0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671"})
 
 { tx:
    '0x47d7b3f6cecbe61a607d052f2077aee230411115851b209a25631e1eed40d154',
@@ -194,27 +196,28 @@ Now lets send 5 tokens from address 1 to address 2
        event: 'Transfer',
        args: [Result] } ] }
 
-Now both accounts must have 5 RskTokens of balance
+```
 
-
+Ahora ambas cuentas deberian contar con  un balance de 5 infuyTokens 
 
 (1)
-
-truffle(develop)> balance = await rskToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
+```
+truffle(develop)> balance = await infuyToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
 truffle(develop)> balance.toString(10)
 '5'
-
+```
 (2)
-
-truffle(develop)> balance = await rskToken.getBalance("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17")
+```
+truffle(develop)> balance = await infuyToken.getBalance("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17")
 truffle(develop)> balance.toString(10)
 '5'
+```
 
+Intentemos ahora enviar 6 tokens desde address 1 hacia address 2. Note que la transaccion es exitosa pues no hay errores ni precodindiciones fallidas pero los balances no son decrementados ya que 6 supera el balance de la cuenta. 
 
-Lets try now to send 6 tokens from account 1 to account 2. Note the transaction succeeds but the balance wasnt decreased.
+```
 
-
- truffle(develop)> sent = rskToken.transferTokens("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17", 6, {from: "0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671"})
+ truffle(develop)> sent = infuyToken.transferTokens("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17", 6, {from: "0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671"})
 { tx:
    '0x31ceb114da1d4a19d479db574063d85c3a505748ade08bb7a70f893cdd2e92e0',
   receipt:
@@ -240,10 +243,17 @@ Lets try now to send 6 tokens from account 1 to account 2. Note the transaction 
       '0x0450c4ab21bbe7961e0ea4060b84d3700f630737db62f192ffc461780d77b971',
      rawLogs: [] },
   logs: [] }
-truffle(develop)> balance = await rskToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
+  
+  
+truffle(develop)> balance = await infuyToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
 truffle(develop)> balance.toString(10)
 '5'
 
+truffle(develop)>  balance = await infuyToken.getBalance("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17")
+truffle(develop)> balance.toString(10)
+'5'
+
+```
 
 
 

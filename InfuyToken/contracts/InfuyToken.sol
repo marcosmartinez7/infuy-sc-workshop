@@ -1,11 +1,11 @@
-pragma solidity >=0.4.25 <0.6.0;
+pragma solidity ^0.4.24;
 
 import "./TokenToEther.sol";
 
 //This is a simple coin-like contract that doesnt satisfies any standard.
 //If you want to create a compatible one please check https://github.com/OpenZeppelin/openzeppelin-solidity/tree/master/contracts/token
 
-contract RskToken {
+contract InfuyToken {
 	mapping (address => uint) balances;
 
 	event Transfer(address indexed _from, address indexed _to, uint256 _value);
@@ -23,7 +23,7 @@ contract RskToken {
 	}
 
 	function getBalanceInEth(address addr) public view returns(uint){
-		return TokenToEther.convert(getBalance(addr),2);
+		return TokenToEther.convert(getBalance(addr),1);
 	}
 
 	function getBalance(address addr) public view returns(uint) {
