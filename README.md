@@ -73,12 +73,13 @@ InfuyToken.deployed().then((instance)=>{infuyToken = instance});
 2. Enviar desde el deployer a otra cuenta. 
 
 Accounts: 
+```
 
 (0) 0x627306090abab3a6e1400e9345bc60c78a8bef57
 (1) 0xf17f52151ebef6c7334fad080c5704d77216b732
 (2) 0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef
-
 ```
+
 Chequeo de balances
 
 (0)
@@ -153,7 +154,7 @@ Intentemos ahora enviar 6 tokens desde address 1 hacia address 2. Note que la tr
 
 ```
 
- truffle(develop)>  infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 6, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
+truffle(develop)>  infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 6, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
 
   
 truffle(develop)>  infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
@@ -167,9 +168,9 @@ truffle(develop)> infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098
 Finalmente repitamos el envio de tokens con un valor valido: 
 
 ```
- truffle(develop)>  infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 2, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
+truffle(develop)>  infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 2, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
 
- truffle(develop)> infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef")
+truffle(develop)> infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef")
 BigNumber { s: 1, e: 0, c: [ 7 ] }
 truffle(develop)> infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
 BigNumber { s: 1, e: 0, c: [ 3 ] }
