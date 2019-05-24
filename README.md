@@ -174,4 +174,4 @@ BigNumber { s: 1, e: 0, c: [ 3 ] }
 
 ```
 
-Cualquier consulta, crítica o feedback post-workshop a anarancio@infuy.com / mmartinez@infuy.com :)
+Cualquier consulta, crítica o feedback post-workshop a alejandro@infuy.com / mmartinez@infuy.com :)
