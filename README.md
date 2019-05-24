@@ -41,6 +41,7 @@
 ```
 
 2_deploy_contracts.js
+```
 
 ## Documentacion de referencia
 
@@ -48,7 +49,6 @@
 - Web3js: https://web3js.readthedocs.io/en/1.0/
 - Solidity: https://solidity.readthedocs.io/en/v0.4.24/
 
-```
 
 ## Deploy  
 
