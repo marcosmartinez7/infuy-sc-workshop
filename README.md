@@ -1,8 +1,6 @@
 # sc-example-bitcoin-day
 
 
-Smart Contract example for the bitcoin day workshop
-
 
 
 # Herramientas
@@ -39,100 +37,74 @@ Smart Contract example for the bitcoin day workshop
 3. 
 
 - Crear solidity files en la carpeta contracts. 
-- Crear un segundo js script que se encargue de hacer el deploy de esos contratos
+- Crear un segundo js script que se encargue de hacer el deploy de esos contratos. El script debe estar incluido en la carpeta migration, bajo el nombre:
+```
+
+2_deploy_contracts.js
+
+## Documentacion de referencia
+
+- Truffle: https://truffleframework.com/docs/truffle/overview
+- Web3js: https://web3js.readthedocs.io/en/1.0/
+- Solidity: https://solidity.readthedocs.io/en/v0.4.24/
+
+```
 
 ## Deploy  
 
+Ejecutar
 
 - truffle develop 
 - compile
 - migrate 
 
 
-## Interactuar con el contrato: enviando tokens 
+## Interactuar con el contrato: enviando tokens
 
-- actualmente solo el owner tiene balance puesto que el constructor asi lo establece
-- enviar balance desde la cuenta owner a otra
-- realizar una transferencia desde la nueva cuenta fondeada
+- Actualmente solo el deployer tiene balance puesto que el constructor asi lo establece. El deployer es  address 0
+- Enviar balance desde la cuenta 0 a otra
+- Realizar una transferencia desde la nueva cuenta fondeada
 
 1. Obtener una instancia de Truffle Contract (interaccion mediante truffle framework y web3 con los contratos)
 ```
 let infuyToken = null;
 InfuyToken.deployed().then((instance)=>{infuyToken = instance});
 ```
-2. Enviar desde el owner a otra cuenta. Owner es address 0
-```
+2. Enviar desde el deployer a otra cuenta. 
+
 Accounts: 
 
-(0) 0x595973f644a5c31f748d35f5492b118f5e2b7ad3
-(1) 0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671
-(2) 0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17
+(0) 0x627306090abab3a6e1400e9345bc60c78a8bef57
+(1) 0xf17f52151ebef6c7334fad080c5704d77216b732
+(2) 0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef
+
 ```
 Chequeo de balances
 
 (0)
 ```
-truffle(develop)> let balance = await infuyToken.getBalance("0x595973f644a5c31f748d35f5492b118f5e2b7ad3")
-truffle(develop)> balance
-<BN: 64>
-truffle(develop)> balance.toString(10)
-'100'
+truffle(develop)> infuyToken.getBalance("0x627306090abab3a6e1400e9345bc60c78a8bef57")
+
+BigNumber { s: 1, e: 2, c: [ 100 ] }
+
 ```
 
 
 (1)
 ```
-truffle(develop)> infuyToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
+truffle(develop)> infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
 <BN: 0>
 ```
 (2)
 ```
-truffle(develop)> infuyToken.getBalance("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17")
+truffle(develop)> infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef")
 <BN: 0>
 ```
 
 Envio de 10 tokens desde address 0 a address 1
 ```
-let sent = infuyToken.transferTokens("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671", 5, {from: "0x595973f644a5c31f748d35f5492b118f5e2b7ad3"})
+ infuyToken.transferTokens("0xf17f52151ebef6c7334fad080c5704d77216b732", 10, {from: "0x627306090abab3a6e1400e9345bc60c78a8bef57"})
 
-sent
-{ tx:
-   '0x94a08125859988992e9015f2f11efa59ee2697fa53f7e387f65ed48f8336fbdc',
-  receipt:
-   { transactionHash:
-      '0x94a08125859988992e9015f2f11efa59ee2697fa53f7e387f65ed48f8336fbdc',
-     transactionIndex: 0,
-     blockHash:
-      '0xdd7a68fc50e044bc7e60bd0346b13fed20f8ed3664bd2541f73e40a452d51cff',
-     blockNumber: 11,
-     from: '0x595973f644a5c31f748d35f5492b118f5e2b7ad3',
-     to: '0xfeaa4fde3a7bd1a6730a8d3a61349caa5b1253c9',
-     gasUsed: 51019,
-     cumulativeGasUsed: 51019,
-     contractAddress: null,
-     logs: [ [Object] ],
-     status: true,
-     logsBloom:
-      '0x00000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080008000000000000000000000000000000000000000000000000000000000000000000000000000000808000000000000010000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000080000000000000000000000004000000000000000002000000000000',
-     v: '0x1b',
-     r:
-      '0xa792be25cc7f618882ddfd62df9931660cb9be0d70403457cfb0ed8d049f8726',
-     s:
-      '0x7b205b9dffcf86978cb1d862b213e1d1fa5f211267ad3364a482f1c2bafff9b7',
-     rawLogs: [ [Object] ] },
-  logs:
-   [ { logIndex: 0,
-       transactionIndex: 0,
-       transactionHash:
-        '0x94a08125859988992e9015f2f11efa59ee2697fa53f7e387f65ed48f8336fbdc',
-       blockHash:
-        '0xdd7a68fc50e044bc7e60bd0346b13fed20f8ed3664bd2541f73e40a452d51cff',
-       blockNumber: 11,
-       address: '0xfEaA4fde3A7BD1A6730a8d3a61349CAa5b1253C9',
-       type: 'mined',
-       id: 'log_ef654000',
-       event: 'Transfer',
-       args: [Result] } ] }
 
 ```
 
@@ -141,60 +113,24 @@ Chequeo de balances:
 
 Address 0 ahora tiene 90 tokens
 ```
-truffle(develop)>  balance = await infuyToken.getBalance("0x595973f644a5c31f748d35f5492b118f5e2b7ad3")
-truffle(develop)> balance.toString(10)
-'90'
+truffle(develop)>    infuyToken.getBalance("0x627306090abab3a6e1400e9345bc60c78a8bef57")
+BigNumber { s: 1, e: 1, c: [ 90 ] }
+
+
 ```
 
 Address 1 ahora tiene 10 Tokens 
 ```
 
-truffle(develop)> balance = infuyToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
-truffle(develop)> balance.toString(10)
-'10'
+truffle(develop)> infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
+BigNumber { s: 1, e: 1, c: [ 10 ] }
+
 ```
 
-Enviemos 5 tokens desde address 1 hacia address 2
+Enviemos ahora 5 tokens desde address 1 hacia address 2
 ```
- sent = infuyToken.transferTokens("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17", 5, {from: "0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671"})
+ infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 5, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
 
-{ tx:
-   '0x47d7b3f6cecbe61a607d052f2077aee230411115851b209a25631e1eed40d154',
-  receipt:
-   { transactionHash:
-      '0x47d7b3f6cecbe61a607d052f2077aee230411115851b209a25631e1eed40d154',
-     transactionIndex: 0,
-     blockHash:
-      '0x5205fd438f41fd9eeb2e8b0edfecc58d4edcbdf8cb9f8099555c7db687c152f3',
-     blockNumber: 15,
-     from: '0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671',
-     to: '0xfeaa4fde3a7bd1a6730a8d3a61349caa5b1253c9',
-     gasUsed: 36019,
-     cumulativeGasUsed: 36019,
-     contractAddress: null,
-     logs: [ [Object] ],
-     status: true,
-     logsBloom:
-      '0x00000000000000000000000000000000000000004000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080008000000000000000000000000000000000000000000000000000000000000000000010000000000808000000004000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000',
-     v: '0x1b',
-     r:
-      '0x090aa8a1518fc14c33768017315de95f0dc449120d66cb1d498131b1bb4b1f51',
-     s:
-      '0x0739ac6beaf8834e4817521ae3f3233ef4f03ff5c803ff8a384092a03aa14fe3',
-     rawLogs: [ [Object] ] },
-  logs:
-   [ { logIndex: 0,
-       transactionIndex: 0,
-       transactionHash:
-        '0x47d7b3f6cecbe61a607d052f2077aee230411115851b209a25631e1eed40d154',
-       blockHash:
-        '0x5205fd438f41fd9eeb2e8b0edfecc58d4edcbdf8cb9f8099555c7db687c152f3',
-       blockNumber: 15,
-       address: '0xfEaA4fde3A7BD1A6730a8d3a61349CAa5b1253C9',
-       type: 'mined',
-       id: 'log_cbb00958',
-       event: 'Transfer',
-       args: [Result] } ] }
 
 ```
 
@@ -202,61 +138,43 @@ Ahora ambas cuentas deberian contar con  un balance de 5 infuyTokens
 
 (1)
 ```
-truffle(develop)> balance = await infuyToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
-truffle(develop)> balance.toString(10)
-'5'
+truffle(develop)>infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
+BigNumber { s: 1, e: 0, c: [ 5 ] }
+
 ```
 (2)
 ```
-truffle(develop)> balance = await infuyToken.getBalance("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17")
-truffle(develop)> balance.toString(10)
-'5'
-```
-
-Intentemos ahora enviar 6 tokens desde address 1 hacia address 2. Note que la transaccion es exitosa pues no hay errores ni precodindiciones fallidas pero los balances no son decrementados ya que 6 supera el balance de la cuenta. 
+truffle(develop)>  infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef")
+BigNumber { s: 1, e: 0, c: [ 5 ] }
 
 ```
 
- truffle(develop)> sent = infuyToken.transferTokens("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17", 6, {from: "0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671"})
-{ tx:
-   '0x31ceb114da1d4a19d479db574063d85c3a505748ade08bb7a70f893cdd2e92e0',
-  receipt:
-   { transactionHash:
-      '0x31ceb114da1d4a19d479db574063d85c3a505748ade08bb7a70f893cdd2e92e0',
-     transactionIndex: 0,
-     blockHash:
-      '0x3eb3e1c09c1755b780322619a2e8ea8be0d968e5dcad2b43803ef9859e9ca956',
-     blockNumber: 21,
-     from: '0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671',
-     to: '0xfeaa4fde3a7bd1a6730a8d3a61349caa5b1253c9',
-     gasUsed: 23556,
-     cumulativeGasUsed: 23556,
-     contractAddress: null,
-     logs: [],
-     status: true,
-     logsBloom:
-      '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-     v: '0x1b',
-     r:
-      '0xe6543dd97b4eca2dc8a37a53060fb34bf92825d4b1e4b824581a0b57f6d38557',
-     s:
-      '0x0450c4ab21bbe7961e0ea4060b84d3700f630737db62f192ffc461780d77b971',
-     rawLogs: [] },
-  logs: [] }
+Intentemos ahora enviar 6 tokens desde address 1 hacia address 2. Note que la transaccion es exitosa pues no hay errores ni precodindiciones fallidas pero los balances no son decrementados ya que 6 supera el balance de la cuenta.
+
+```
+
+ truffle(develop)>  infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 6, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
+
   
-  
-truffle(develop)> balance = await infuyToken.getBalance("0x3aebb2dd226c2f8ec9370f1e4793cc90e7ed0671")
-truffle(develop)> balance.toString(10)
-'5'
+truffle(develop)>  infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
 
-truffle(develop)>  balance = await infuyToken.getBalance("0x1c74bdf085c77eccfb4a7a935d3be87a88b6fd17")
-truffle(develop)> balance.toString(10)
-'5'
+
+truffle(develop)> infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef")
+
 
 ```
 
+Finalmente repitamos el envio de tokens con un valor valido: 
+
+```
+ truffle(develop)>  infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 2, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
+
+ truffle(develop)> infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef")
+BigNumber { s: 1, e: 0, c: [ 7 ] }
+truffle(develop)> infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
+BigNumber { s: 1, e: 0, c: [ 3 ] }
 
 
+```
 
-
-
+Cualquier consulta, crítica o feedback post-workshop a anarancio@infuy.com / mmartinez@infuy.com :)
