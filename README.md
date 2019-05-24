@@ -104,9 +104,7 @@ truffle(develop)> infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098
 
 Envio de 10 tokens desde address 0 a address 1
 ```
- infuyToken.transferTokens("0xf17f52151ebef6c7334fad080c5704d77216b732", 10, {from: "0x627306090abab3a6e1400e9345bc60c78a8bef57"})
-
-
+infuyToken.transferTokens("0xf17f52151ebef6c7334fad080c5704d77216b732", 10, {from: "0x627306090abab3a6e1400e9345bc60c78a8bef57"})
 ```
 
 Chequeo de balances:
@@ -114,24 +112,22 @@ Chequeo de balances:
 
 Address 0 ahora tiene 90 tokens
 ```
-truffle(develop)>    infuyToken.getBalance("0x627306090abab3a6e1400e9345bc60c78a8bef57")
+truffle(develop)> infuyToken.getBalance("0x627306090abab3a6e1400e9345bc60c78a8bef57")
 BigNumber { s: 1, e: 1, c: [ 90 ] }
-
 
 ```
 
 Address 1 ahora tiene 10 Tokens 
 ```
 
-truffle(develop)> infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
+truffle(develop)>infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
 BigNumber { s: 1, e: 1, c: [ 10 ] }
 
 ```
 
 Enviemos ahora 5 tokens desde address 1 hacia address 2
 ```
- infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 5, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
-
+infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 5, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
 
 ```
 
@@ -139,13 +135,13 @@ Ahora ambas cuentas deberian contar con  un balance de 5 infuyTokens
 
 (1)
 ```
-truffle(develop)>infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
+truffle(develop)> infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
 BigNumber { s: 1, e: 0, c: [ 5 ] }
 
 ```
 (2)
 ```
-truffle(develop)>  infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef")
+truffle(develop)> infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef")
 BigNumber { s: 1, e: 0, c: [ 5 ] }
 
 ```
@@ -154,10 +150,10 @@ Intentemos ahora enviar 6 tokens desde address 1 hacia address 2. Note que la tr
 
 ```
 
-truffle(develop)>  infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 6, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
+truffle(develop)> infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 6, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
 
   
-truffle(develop)>  infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
+truffle(develop)> infuyToken.getBalance("0xf17f52151ebef6c7334fad080c5704d77216b732")
 
 
 truffle(develop)> infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef")
@@ -168,7 +164,7 @@ truffle(develop)> infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098
 Finalmente repitamos el envio de tokens con un valor valido: 
 
 ```
-truffle(develop)>  infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 2, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
+truffle(develop)> infuyToken.transferTokens("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef", 2, {from: "0xf17f52151ebef6c7334fad080c5704d77216b732"})
 
 truffle(develop)> infuyToken.getBalance("0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef")
 BigNumber { s: 1, e: 0, c: [ 7 ] }
