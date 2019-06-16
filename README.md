@@ -1,4 +1,4 @@
-# sc-example-bitcoin-day
+# Infuy Token
 
 
 
