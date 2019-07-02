@@ -11,9 +11,23 @@
 - Ctrl + P, escribir  "ext install ". Nota: Tener en cuenta el espacio al final.
 - Buscar por "Solidity", instalar la primera opcion (https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity)
 
-## Instalacion de Truffle
+o 
 
-- npm install -g truffle@4.1.14
+- Instalar IntelliJ con solidity plugin (recomendado):  https://plugins.jetbrains.com/plugin/9475-intellij-solidity
+
+
+
+
+
+## Instalacion de Truffle y Ganache
+
+Truffle:
+
+npm install -g truffle@4.1.14
+
+Ganache:
+https://www.trufflesuite.com/ganache
+
 
 ## Creacion de proyecto en Truffle
 
