@@ -68,7 +68,7 @@ https://www.trufflesuite.com/ganache
 
 Ejecutar
 
-- truffle develop 
+- truffle develop (o si deseas utilizar Ganache como UI, truffle console --network regtest)
 - compile
 - migrate 
 
