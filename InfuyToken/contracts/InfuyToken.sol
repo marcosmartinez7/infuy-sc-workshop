@@ -1,6 +1,5 @@
 pragma solidity ^0.4.24;
 
-import "./TokenToWei.sol";
 
 //This is a simple coin-like contract that doesnt satisfies any standard.
 //If you want to create a compatible one please check https://github.com/OpenZeppelin/openzeppelin-solidity/tree/master/contracts/token
@@ -22,9 +21,7 @@ contract InfuyToken {
 		return true;
 	}
 
-	function getBalanceInEth(address addr) public view returns(uint){
-		return TokenToWei.convert(getBalance(addr),1);
-	}
+
 
 	function getBalance(address addr) public view returns(uint) {
 		return balances[addr];
