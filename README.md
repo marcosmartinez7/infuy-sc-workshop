@@ -173,6 +173,7 @@ balance1.toString() = 5
 
 truffle(development)>  balance2= await infuyToken.getBalance("0xCA25c31e3A7808FD8727D8BaB956326F6826763A")
 balance1.toString() = 5
+```
 
 
 Cualquier consulta, crítica o feedback post-workshop a mmartinez@infuy.com :)
