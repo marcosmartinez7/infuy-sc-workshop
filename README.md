@@ -120,7 +120,7 @@ balance2.toString()
 
 Envio de 10 tokens desde address 0 a address 1
 ```
-infuyToken.transferTokens("0xEc53cBC63aB0C382e3142D456813313b0c9e7c27", 10, {from: "0xa44008862458CfB946fD01b6B520bA673f56e3ec"})
+infuyToken.transfer("0xEc53cBC63aB0C382e3142D456813313b0c9e7c27", 10, {from: "0xa44008862458CfB946fD01b6B520bA673f56e3ec"})
 ```
 
 Chequeo de balances:
@@ -143,7 +143,7 @@ balance1.toString() = 10
 
 Enviemos ahora 5 tokens desde address 1 hacia address 2
 ```
-infuyToken.transferTokens("0x2a0ebde42559A9DEC3d29B5d6cF35932e299445C", 5, {from: "0xEc53cBC63aB0C382e3142D456813313b0c9e7c27"})
+infuyToken.transfer("0x2a0ebde42559A9DEC3d29B5d6cF35932e299445C", 5, {from: "0xEc53cBC63aB0C382e3142D456813313b0c9e7c27"})
 
 ```
 
@@ -165,7 +165,7 @@ Intentemos ahora enviar 6 tokens desde address 1 hacia address 2. Note que la tr
 
 ```
 
-truffle(development)> infuyToken.transferTokens("0x2a0ebde42559A9DEC3d29B5d6cF35932e299445C", 6, {from: "0xEc53cBC63aB0C382e3142D456813313b0c9e7c27"})
+truffle(development)> infuyToken.transfer("0x2a0ebde42559A9DEC3d29B5d6cF35932e299445C", 6, {from: "0xEc53cBC63aB0C382e3142D456813313b0c9e7c27"})
 
   
 truffle(development)> balance1= await infuyToken.getBalance("0xEc53cBC63aB0C382e3142D456813313b0c9e7c27")
