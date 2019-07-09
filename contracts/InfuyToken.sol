@@ -1,26 +1,42 @@
 //This is a simple coin-like contract that doesnt satisfies any standard.
 //If you want to create a compatible one please check https://github.com/OpenZeppelin/openzeppelin-solidity/tree/master/contracts/token
 
-contract InfuyToken {
-    mapping (address => uint) balances;
+pragma solidity >=0.4.22 <0.6.0;
 
-    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+contract InfuyToken {
+
+    mapping(address => uint256) balances;
+
+    event Transfer(address indexed from, address indexed to, uint256 value);
 
     constructor() public {
         balances[msg.sender] = 100;
     }
 
-    function transferTokens(address receiver, uint amount) public returns(bool transfered) {
-        if (balances[msg.sender] < amount) return false;
-        balances[msg.sender] -= amount;
-        balances[receiver] += amount;
-        emit Transfer(msg.sender, receiver, amount);
+    function getBalance(address from) view public returns (uint256) {
+        return balances[from];
+    }
+
+    function transfer(address to, uint256 value) public returns (bool){
+       // require(balances[msg.sender] <= value);
+        if(balances[msg.sender] < value){
+            return false;
+        }
+        balances[msg.sender] -= value;
+        balances[to] += value;
+        emit Transfer(msg.sender, to, value);
         return true;
     }
 
-
-
-    function getBalance(address addr) public view returns(uint) {
-        return balances[addr];
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
