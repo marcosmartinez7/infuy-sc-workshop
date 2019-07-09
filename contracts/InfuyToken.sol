@@ -18,7 +18,7 @@ contract InfuyToken {
     }
 
     function transfer(address to, uint256 value) public returns (bool){
-       // require(balances[msg.sender] <= value);
+       // require(balances[msg.sender] >= value);
         if(balances[msg.sender] < value){
             return false;
         }
