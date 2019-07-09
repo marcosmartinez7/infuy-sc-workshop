@@ -88,16 +88,17 @@ const infuyToken = await InfuyToken.deployed()
 Accounts: 
 ```
 
-(0) 0x400534b8b0980aC596ef7Eeddd5E8b8f95bf686B
-(1) 0x08ebEdCf677fBF25E220129f497e65ff7C3Ba096
-(2) 0xCA25c31e3A7808FD8727D8BaB956326F6826763A
+(0) 0xa44008862458CfB946fD01b6B520bA673f56e3ec
+(1) 0xEc53cBC63aB0C382e3142D456813313b0c9e7c27
+(2) 0x2a0ebde42559A9DEC3d29B5d6cF35932e299445C
 ```
+
 
 Chequeo de balances
 
 (0)
 ```
-truffle(development)> balance = await infuyToken.getBalance("0x400534b8b0980aC596ef7Eeddd5E8b8f95bf686B")
+truffle(development)> balance = await infuyToken.getBalance("0xa44008862458CfB946fD01b6B520bA673f56e3ec")
 
 balance.toString() = 100
 
@@ -106,20 +107,20 @@ balance.toString() = 100
 
 (1)
 ```
-truffle(development)> balance1 = await infuyToken.getBalance("0x08ebEdCf677fBF25E220129f497e65ff7C3Ba096")
+truffle(development)> balance1 = await infuyToken.getBalance("0xEc53cBC63aB0C382e3142D456813313b0c9e7c27")
 balance1.toString()
 <BN: 0>
 ```
 (2)
 ```
-truffle(development)> balance2 = await infuyToken.getBalance("0xCA25c31e3A7808FD8727D8BaB956326F6826763A")
+truffle(development)> balance2 = await infuyToken.getBalance("0x2a0ebde42559A9DEC3d29B5d6cF35932e299445C")
 balance2.toString()
 <BN: 0>
 ```
 
 Envio de 10 tokens desde address 0 a address 1
 ```
-infuyToken.transferTokens("0x08ebEdCf677fBF25E220129f497e65ff7C3Ba096", 10, {from: "0x400534b8b0980aC596ef7Eeddd5E8b8f95bf686B"})
+infuyToken.transferTokens("0xEc53cBC63aB0C382e3142D456813313b0c9e7c27", 10, {from: "0xa44008862458CfB946fD01b6B520bA673f56e3ec"})
 ```
 
 Chequeo de balances:
@@ -127,7 +128,7 @@ Chequeo de balances:
 
 Address 0 ahora tiene 90 tokens
 ```
-truffle(development)> balance = await infuyToken.getBalance("0x400534b8b0980aC596ef7Eeddd5E8b8f95bf686B")
+truffle(development)> balance = await infuyToken.getBalance("0xa44008862458CfB946fD01b6B520bA673f56e3ec")
 balance.toString() = 90
 
 ```
@@ -135,14 +136,14 @@ balance.toString() = 90
 Address 1 ahora tiene 10 Tokens 
 ```
 
-truffle(development)> balance1= await infuyToken.getBalance("0x08ebEdCf677fBF25E220129f497e65ff7C3Ba096")
+truffle(development)> balance1= await infuyToken.getBalance("0xEc53cBC63aB0C382e3142D456813313b0c9e7c27")
 balance1.toString() = 10
 
 ```
 
 Enviemos ahora 5 tokens desde address 1 hacia address 2
 ```
-infuyToken.transferTokens("0xCA25c31e3A7808FD8727D8BaB956326F6826763A", 5, {from: "0x08ebEdCf677fBF25E220129f497e65ff7C3Ba096"})
+infuyToken.transferTokens("0x2a0ebde42559A9DEC3d29B5d6cF35932e299445C", 5, {from: "0xEc53cBC63aB0C382e3142D456813313b0c9e7c27"})
 
 ```
 
@@ -150,12 +151,12 @@ Ahora ambas cuentas deberian contar con  un balance de 5 infuyTokens
 
 (1)
 ```
-truffle(development)> balance1= await infuyToken.getBalance("0x08ebEdCf677fBF25E220129f497e65ff7C3Ba096")
+truffle(development)> balance1= await infuyToken.getBalance("0xEc53cBC63aB0C382e3142D456813313b0c9e7c27")
 balance1.toString() = 5
 ```
 (2)
 ```
-truffle(development)>  balance2= await infuyToken.getBalance("0xCA25c31e3A7808FD8727D8BaB956326F6826763A")
+truffle(development)>  balance2= await infuyToken.getBalance("0x2a0ebde42559A9DEC3d29B5d6cF35932e299445C")
 balance1.toString() = 5
 
 ```
@@ -164,14 +165,14 @@ Intentemos ahora enviar 6 tokens desde address 1 hacia address 2. Note que la tr
 
 ```
 
-truffle(development)> infuyToken.transferTokens("0xCA25c31e3A7808FD8727D8BaB956326F6826763A", 6, {from: "0x08ebEdCf677fBF25E220129f497e65ff7C3Ba096"})
+truffle(development)> infuyToken.transferTokens("0x2a0ebde42559A9DEC3d29B5d6cF35932e299445C", 6, {from: "0xEc53cBC63aB0C382e3142D456813313b0c9e7c27"})
 
   
-truffle(development)> balance1= await infuyToken.getBalance("0x08ebEdCf677fBF25E220129f497e65ff7C3Ba096")
+truffle(development)> balance1= await infuyToken.getBalance("0xEc53cBC63aB0C382e3142D456813313b0c9e7c27")
 balance1.toString() = 5
 
 
-truffle(development)>  balance2= await infuyToken.getBalance("0xCA25c31e3A7808FD8727D8BaB956326F6826763A")
+truffle(development)>  balance2= await infuyToken.getBalance("0x2a0ebde42559A9DEC3d29B5d6cF35932e299445C")
 balance1.toString() = 5
 ```
 
