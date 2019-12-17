@@ -1,5 +1,8 @@
 # Infuy Token
 
+# Slides: 
+
+Todo el workshop se encuentra disponible en slides: https://github.com/marcosmartinez7/infuy-sc-workshop/blob/master/Smart%20Contracts%20101.pdf
 
 
 
